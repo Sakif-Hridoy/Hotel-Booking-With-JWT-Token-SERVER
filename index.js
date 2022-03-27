@@ -33,6 +33,7 @@ client.connect(err => {
     })
   })
   // perform actions on the collection object
+  // install firebase-admin and check pkg.json
 //   client.close();
 });
 
