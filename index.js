@@ -34,10 +34,24 @@ client.connect(err => {
   app.get('/bookings',(req,res)=>{
     // console.log(req.query.email);
     console.log(req.headers.authorization);
-    bookings.find({email: req.query.email})
-    .toArray((err,documents)=>{
-      res.send(documents)
-    })
+
+    // idToken comes from the client app
+
+admin.auth().verifyIdToken(idToken)
+.then((decodedToken) => {
+  const uid = decodedToken.uid;
+  // ...
+})
+.catch((error) => {
+  // Handle error
+});
+
+
+
+    // bookings.find({email: req.query.email})
+    // .toArray((err,documents)=>{
+    //   res.send(documents)
+    // })
   })
   // perform actions on the collection object
   // install firebase-admin and check pkg.json
