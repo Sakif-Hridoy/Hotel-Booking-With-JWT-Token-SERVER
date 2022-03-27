@@ -33,18 +33,26 @@ client.connect(err => {
 
   app.get('/bookings',(req,res)=>{
     // console.log(req.query.email);
-    console.log(req.headers.authorization);
+    // console.log(req.headers.authorization);
+
+    const bearer = req.headers.authorization;
+    if(bearer && bearer.startsWith('Bearer ')){
+      const idToken = bearer.split(' ')[1];
+      console.log({idToken});
+
+      admin.auth().verifyIdToken(idToken)
+        .then((decodedToken) => {
+          const uid = decodedToken.uid;
+          // ...
+        })
+        .catch((error) => {
+          // Handle error
+        });
+    }
 
     // idToken comes from the client app
 
-admin.auth().verifyIdToken(idToken)
-.then((decodedToken) => {
-  const uid = decodedToken.uid;
-  // ...
-})
-.catch((error) => {
-  // Handle error
-});
+
 
 
 
