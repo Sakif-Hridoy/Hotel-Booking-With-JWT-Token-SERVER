@@ -43,6 +43,7 @@ client.connect(err => {
       admin.auth().verifyIdToken(idToken)
         .then((decodedToken) => {
           const uid = decodedToken.uid;
+          console.log({uid})
           // ...
         })
         .catch((error) => {
