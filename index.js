@@ -1,12 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const admin = require('firebase-admin');
 const port = 5000;
 
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+
+var serviceAccount = require("burj-al-arab-8f7bc-firebase-adminsdk-sh6ky-3b2572969c.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://mydbuser1:jmXHknmahHGBXCXq@cluster0.djg6r.mongodb.net/burjAlArab?retryWrites=true&w=majority";
