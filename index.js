@@ -18,7 +18,18 @@ client.connect(err => {
   app.post('/addBooking',(req,res)=>{
       const newBooking = req.body;
       bookings.insertOne(newBooking)
+      .then(result=>{
+        res.send(result.insertedCount > 0);
+      })
       console.log(newBooking)
+  })
+
+  app.get('/bookings',(req,res)=>{
+    // console.log(req.query.email);
+    bookings.find({email: req.query.email})
+    .toArray((err,documents)=>{
+      res.send(documents)
+    })
   })
   // perform actions on the collection object
 //   client.close();
