@@ -12,11 +12,12 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://mydbuser1:jmXHknmahHGBXCXq@cluster0.djg6r.mongodb.net/burjAlArab?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
-  const collection = client.db("burjAlArab").collection("bookings");
+  const bookings = client.db("burjAlArab").collection("bookings");
 
   console.log("database connected");
   app.post('/addBooking',(req,res)=>{
       const newBooking = req.body;
+      bookings.insertOne(newBooking)
       console.log(newBooking)
   })
   // perform actions on the collection object
