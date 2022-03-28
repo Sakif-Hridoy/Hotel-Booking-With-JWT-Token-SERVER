@@ -61,11 +61,16 @@ In here,[1] has considered as an index of 'Bearer ','Bearer${token}'
           if(tokenEmail == queryEmail){
             bookings.find({email: req.query.email})
             .toArray((err,documents)=>{
-              res.send(documents)
+              res.status(200).send(documents)
             })
+          }
+
+          else{
+            res.status(401).send('unauthorized access')
           }
         })
         .catch((error) => {
+          res.status(401).send('unauthorized access')
           // Handle error
         });
     }
