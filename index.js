@@ -35,6 +35,15 @@ client.connect(err => {
     // console.log(req.query.email);
     // console.log(req.headers.authorization);
 
+    /*The Operation Method of this validation*/
+
+/*bearer is taking from  req.headers.authorization
+ In validation,startsWith function used to separate Bearer and Token.
+ And inside startsWith , 'Bearer ' has used with a space because in this application,
+the token was declared in thisway,'Bearer${token}',sothat,in this line,const idToken = bearer.split(' ')[1];
+In here,[1] has considered as an index of 'Bearer ','Bearer${token}'
+
+*/ 
     const bearer = req.headers.authorization;
     if(bearer && bearer.startsWith('Bearer ')){
       const idToken = bearer.split(' ')[1];
