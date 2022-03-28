@@ -51,9 +51,19 @@ In here,[1] has considered as an index of 'Bearer ','Bearer${token}'
 
       admin.auth().verifyIdToken(idToken)
         .then((decodedToken) => {
-          const uid = decodedToken.uid;
-          console.log({uid})
+          // const uid = decodedToken.uid;
+          // console.log({uid})
           // ...
+
+          const tokenEmail = decodedToken.email;
+          const queryEmail = req.query.email;
+          console.log(tokenEmail,queryEmail);
+          if(tokenEmail == queryEmail){
+            bookings.find({email: req.query.email})
+            .toArray((err,documents)=>{
+              res.send(documents)
+            })
+          }
         })
         .catch((error) => {
           // Handle error
@@ -66,10 +76,7 @@ In here,[1] has considered as an index of 'Bearer ','Bearer${token}'
 
 
 
-    // bookings.find({email: req.query.email})
-    // .toArray((err,documents)=>{
-    //   res.send(documents)
-    // })
+    
   })
   // perform actions on the collection object
   // install firebase-admin and check pkg.json
