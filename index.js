@@ -32,14 +32,7 @@ client.connect(err => {
   const bookings = client.db("burjAlArab").collection("bookings");
 
   console.log("database connected");
-  app.post('/addBooking',(req,res)=>{
-      const newBooking = req.body;
-      bookings.insertOne(newBooking)
-      .then(result=>{
-        res.send(result.insertedCount > 0);
-      })
-      console.log(newBooking)
-  })
+  
 
   app.get('/bookings',(req,res)=>{
     // console.log(req.query.email);
@@ -93,6 +86,15 @@ In here,[1] has considered as an index of 'Bearer ','Bearer${token}'
 
     
   })
+
+  app.post('/addBooking',(req,res)=>{
+    const newBooking = req.body;
+    bookings.insertOne(newBooking)
+    .then(result=>{
+      res.send(result.insertedCount > 0);
+    })
+    console.log(newBooking)
+})
   // perform actions on the collection object
   // install firebase-admin and check pkg.json
 //   client.close();
