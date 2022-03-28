@@ -23,6 +23,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "firebase-admin": "^10.0.2",
+    "heroku": "^7.60.0",
     "mongodb": "^4.4.1"
   },
   "devDependencies": {
