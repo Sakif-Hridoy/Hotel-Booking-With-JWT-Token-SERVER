@@ -10,13 +10,16 @@ console.log(process.env.DB_USER);
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.djg6r.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
-const port = 5000;
+
 
 const app = express();
-
+const port = 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 var serviceAccount = require("./configs/burj-al-arab-8f7bc-firebase-adminsdk-sh6ky-3b2572969c.json");
 
 admin.initializeApp({
@@ -97,8 +100,6 @@ In here,[1] has considered as an index of 'Bearer ','Bearer${token}'
 
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+
 
 app.listen(process.env.PORT || port)
